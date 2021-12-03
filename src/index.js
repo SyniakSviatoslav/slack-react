@@ -3,5 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+
+const Root = () => {
+    return (
+
+    <Router>
+        <Switch>
+            <Route exact path="/" component={App} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+        </Switch>
+    </Router>
+    )
+}
+
+ReactDOM.render(<Root />, document.getElementById('root'));
 
