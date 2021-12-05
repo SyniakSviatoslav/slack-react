@@ -28,6 +28,7 @@ const firebaseConfig = {
     projectId: "react-slack-8ed42",
     storageBucket: "react-slack-8ed42.appspot.com",
     messagingSenderId: "663292970597",
+    databaseURL: "https://react-slack-8ed42-default-rtdb.europe-west1.firebasedatabase.app/",
     appId: "1:663292970597:web:13426eb99842d874d6688c",
     measurementId: "G-X6K6J8HNHE"
 }
