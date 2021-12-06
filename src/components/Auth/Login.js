@@ -1,9 +1,7 @@
 import React from "react";
-import { Grid, Form, Segment, Button, Header, Message, Icon } from "semantic-ui-react";
+import {Grid, Form, Segment, Button, Header, Message, Icon} from 'semantic-ui-react';
 import { Link } from "react-router-dom";
-import firebase from '../../firebase';
-
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 
 class Login extends React.Component{
     
@@ -11,8 +9,9 @@ class Login extends React.Component{
         email:"",
         password:"",
         errors:[],
-        loading:false,
+        loading:false
     };
+ 
 
     displayErrors = errors => errors.map((error, i)=><p key={i}>{error.message}</p>)
 
@@ -20,29 +19,27 @@ class Login extends React.Component{
         this.setState({[event.target.name]:event.target.value})
     }
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
         event.preventDefault();
-        // if(this.isFormValid(this.state)){
-        this.setState({errors:[], loading:true});
-        const { email, password } = this.state;
-            firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .then (signedInUser => {
-                console.log(signedInUser);
+        if (this.isFormValid(this.state)) {
+            const auth = getAuth()
+          console.log(this.state.password)
+          this.setState({ errors: [], loading: true });
+         signInWithEmailAndPassword(auth, this.state.email, this.state.password)
+            .then(signedInUser => {
+              console.log(signedInUser);
             })
             .catch(err => {
-                console.error(err);
-                this.setState({
-                    errors: this.state.errors.concat(err),
-                    loading: false
-                })
-            })
-        
-    
-    };
+              console.error(err);
+              this.setState({
+                errors: this.state.errors.concat(err),
+                loading: false
+              });
+            });
+        }
+      };
 
-    // isFormValid = ({ email, password}) => email && password;
+    isFormValid = ({ email, password }) => email && password
 
     handleInputError = (errors, inputName) =>{
       return errors.some(error=>
@@ -51,14 +48,14 @@ class Login extends React.Component{
     };
 
     render(){
-        const {email, password, errors, loading} = this.state;
+        const { email, password, errors, loading} = this.state;
 
 
         return (
             <Grid textAlign="center" verticalAlign="middle" className="app">
                 <Grid.Column style={{maxWidth:450}}>
                     <Header as="h1" icon color="violet" textAlign="center">
-                        <Icon name="code branch" color="orange"/>
+                        <Icon name="code branch" color="violet"/>
                         Login to DevChat
                     </Header>
                     <Form size="large" onSubmit={this.handleSubmit}>
@@ -75,7 +72,7 @@ class Login extends React.Component{
                         </Message>
                     )}
                     <Message>
-                         Don't have an account
+                        Don't have an account?
                         <Link to="/register">
                             Register
                         </Link>
@@ -85,7 +82,5 @@ class Login extends React.Component{
         )
     }
 }
-
-
 
 export default Login
