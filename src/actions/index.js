@@ -1,3 +1,4 @@
+import { isPrivate } from "@babel/types";
 import * as actionTypes from "./types"
 
 // User actions
@@ -24,6 +25,15 @@ export const setCurrentChannel = channel => {
         type: actionTypes.SET_CURRENT_CHANNEL,
         payload: {
             currentChannel: channel
+        }
+    }
+}
+
+export const setPrivateChannel = isPrivateChannel => {
+    return {
+        type: actionTypes.SET_PRIVATE_CHANNEL,
+        payload: {
+            isPrivateChannel
         }
     }
 }
