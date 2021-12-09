@@ -1,4 +1,4 @@
-import { isPrivate } from "@babel/types";
+
 import * as actionTypes from "./types"
 
 // User actions
@@ -46,4 +46,14 @@ export const setUserPosts = userPosts => {
         }
     }
 };
+
+export const setColors = (primaryColor, secondaryColor) => {
+    return {
+        type: actionTypes.SET_COLORS,
+        payload: {
+            primaryColor,
+            secondaryColor
+        }
+    }
+}
 
