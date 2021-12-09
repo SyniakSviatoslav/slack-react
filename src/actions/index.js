@@ -16,7 +16,7 @@ export const clearUser = () => {
     return {
         type: actionTypes.CLEAR_USER
     }
-}
+};
 
 // Channel actions
 
@@ -27,7 +27,7 @@ export const setCurrentChannel = channel => {
             currentChannel: channel
         }
     }
-}
+};
 
 export const setPrivateChannel = isPrivateChannel => {
     return {
@@ -36,4 +36,14 @@ export const setPrivateChannel = isPrivateChannel => {
             isPrivateChannel
         }
     }
-}
+};
+
+export const setUserPosts = userPosts => {
+    return {
+        type: actionTypes.SET_USER_POSTS,
+        payload: {
+            userPosts
+        }
+    }
+};
+
