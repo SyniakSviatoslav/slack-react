@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, GridColumn } from "semantic-ui-react";
 import './App.css';
 import { connect } from "react-redux";
 
@@ -22,21 +22,21 @@ primaryColor, secondaryColor }) => (
     primaryColor={primaryColor}
     />
 
-    <Grid.Column style={{ marginLeft: 320 }}>
+    <GridColumn style={{ marginLeft: 320 }}>
       <Messages
         key={currentChannel && currentChannel.id}
         currentChannel={currentChannel}
         currentUser={currentUser}
         isPrivateChannel={isPrivateChannel}
       />
-    </Grid.Column>
+    </GridColumn>
 
-    <Grid.Column width={4}>
+    <GridColumn width={4}>
       <MetaPanel
       key={currentChannel && currentChannel.name}
       userPosts={userPosts}
       isPrivateChannel={isPrivateChannel}/>
-    </Grid.Column>
+    </GridColumn>
   </Grid>
 )
 
