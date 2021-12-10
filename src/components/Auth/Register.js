@@ -1,9 +1,8 @@
 import React from "react";
-import { Grid, Form, Segment, Button, Header, Message, Icon } from "semantic-ui-react";
+import firebase from "../../firebase";
+import md5 from "md5";
+import {Grid, Form, Segment, Button, Header, Message, Icon} from 'semantic-ui-react';
 import { Link } from "react-router-dom";
-import firebase from '../../firebase';
-import md5 from 'md5';
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 class Register extends React.Component{
     
@@ -70,7 +69,7 @@ class Register extends React.Component{
                 console.log(createdUser);
                 createdUser.user.updateProfile({
                     displayName:this.state.username,
-                    photoURL:`http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`,
+                    photoURL:`http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`
                 })
                 .then(()=>{
                     this.saveUser(createdUser).then(()=>{
@@ -80,7 +79,7 @@ class Register extends React.Component{
             .catch(err=>{
                 console.error(err);
                 this.setState({
-                    errors: this.state.errors.concat(err),
+                    errors: this.state.errors.concate(err),
                     loading:false
                 })
             })
@@ -144,5 +143,4 @@ class Register extends React.Component{
     }
 }
 
-
-export default Register;
+export default Register
